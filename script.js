@@ -3,15 +3,13 @@ const submitBtn = document.getElementById("submit");
 const learnersList = document.getElementById("learnersList");
 const raffleBtn = document.getElementById("pick");
 const winnerDisplay = document.getElementById("winnerDisplay");
-const removeBtn= document.getElementById("remove")
+const removeBtn = document.getElementById("remove");
 const learners = [];
 const startTime = new Date();
 console.log(startTime);
 
 function addToList(learner) {
-  learnersList.innerHTML =
-    learnersList.innerHTML +
-    `<li> ${learner} <input type="checkbox" name="${learner}" id="${learner}"> </li>`;
+  learnersList.innerHTML = learnersList.innerHTML + `<li> ${learner}  </li>`;
 }
 
 //function saveLearnerLocally() {
