@@ -1,4 +1,5 @@
-const learnerInput = document.getElementById("learner-input");
+//import confetti from "https://esm.run/canvas-confetti@1";
+//const learnerInput = document.getElementById("learner-input");
 const submitBtn = document.getElementById("submit");
 const learnersList = document.getElementById("learnersList");
 const raffleBtn = document.getElementById("pick");
@@ -32,13 +33,13 @@ function removeLearnerFromLists() {
   for (let i = 0; i < learnersForRaffleList.length; i++) {
     if (learnersForRaffleList[i] === learnerInput.value) {
       learnersForRaffleList.splice([i], 1);
-      i--
+      i--;
     }
   }
   for (let i = 0; i < learnersToDisplayList.length; i++) {
     if (learnersToDisplayList[i] === learnerInput.value) {
       learnersToDisplayList.splice([i], 1);
-      i--
+      i--;
     }
   }
 }
@@ -71,6 +72,13 @@ function getRandomNumber() {
   return Math.floor(Math.random() * learnersToDisplayList.length);
 }
 
+function confettiThrow() {
+  confetti({
+    particleCount: 150,
+    spread: 60,
+  });
+}
+
 learnerInput.addEventListener("keypress", function (event) {
   if (event.key === "Enter") document.getElementById("submit").click;
 });
@@ -86,6 +94,7 @@ submitBtn.addEventListener("click", () => {
   learnersList.innerHTML = "";
   addLearnerToPage();
   clearInput();
+  confettiThrow();
 });
 rollBtn.addEventListener("click", () => {
   runRoulette();
@@ -98,5 +107,6 @@ removeBtn.addEventListener("click", () => {
   removeLearnerFromLists();
   clearDisplayNames();
   addLearnerToPage();
+
   console.log(learnersForRaffleList);
 });

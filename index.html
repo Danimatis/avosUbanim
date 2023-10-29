@@ -16,10 +16,11 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+
     <title>Document</title>
   </head>
-  <body class="bg-info-subtle">
-    <div class="d-flex flex-column p-2 align-items-center">
+  <body style="background-image: url(/Vivo_Y73s.jpg); background-size: cover">
+    <div class="d-flex flex-column mx-5 m-5 p-2 align-items-center" style= "box-shadow: inset -1px 3px 8px 5px #1F87FF, 2px 5px 16px 0px #0B325E, 5px 5px 15px 5px rgba(0,0,0,0);"">
       <h1>רשום לאבות ובנים</h1>
       <div class="input-group justify-content-center p-2">
         <input
@@ -29,21 +30,40 @@
           aria-label="First name"
           class="w-25"
         />
-        <span class="input-group-text">שם פרטי ומשפחה</span>
+        <span class="input-group-text bg-warning">שם פרטי ומשפחה</span>
       </div>
       <div>
         <button class="btn btn-primary m-3" id="submit">Submit</button>
         <button class="btn btn-danger m-3" id="remove">Remove</button>
         <button class="btn btn-info m-3" id="roll">roll</button>
       </div>
-      <button class="btn btn-success w-50 m-3" id="pick">הגרלה</button>
+      <button class="btn btn-success w-50 m-3" id="pick" data-bs-toggle="modal" data-bs-target="#winner"  >הגרלה</button>
       <div></div>
     </div>
 
-    <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-row align-items-center">
       <ul id="learnersList"></ul>
+      <div class="fs-1 flex-fill text-center" id="roulette"></div>
     </div>
-    <div class="fs-1" id="roulette"></div>
     <div class="fs-1" id="winnerDisplay"></div>
+
+
+    <div class="modal" tabindex="-1" id="winner">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
