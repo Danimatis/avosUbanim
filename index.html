@@ -5,23 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="./script.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
-  <body>
-    <h1>אבות ובנים</h1>
-    <input style="padding: 3vh" type="text" id="learner-input" />
-
-    <div style="padding: 3vh">
-      <button id="submit">Submit</button>
-
-      <button id="pick">הגרלה</button>
-      <button id="remove"> Remove
-      </button>
+  <body class="bg-info-subtle">
+    <div class="d-flex flex-column p-2 align-items-center">
+      <h1>רשום לאבות ובנים</h1>
+      <div class="input-group justify-content-center p-2">
+        <input
+          id="learner-input"
+          dir="rtl"
+          type="text"
+          aria-label="First name"
+          class="w-25"
+        />
+        <span class="input-group-text">שם פרטי ומשפחה</span>
+      </div>
+      <div>
+        <button class="btn btn-primary m-3" id="submit">Submit</button>
+        <button class="btn btn-danger m-3" id="remove">Remove</button>
+        <button class="btn btn-info m-3" id="roll">roll</button>
+      </div>
+      <button class="btn btn-success w-50 m-3" id="pick">הגרלה</button>
+      <div></div>
     </div>
 
-    <div>
+    <div class="d-flex flex-column align-items-center">
       <ul id="learnersList"></ul>
     </div>
-    <div id="winnerDisplay"></div>
+    <div class="fs-1" id="roulette"></div>
+    <div class="fs-1" id="winnerDisplay"></div>
   </body>
 </html>

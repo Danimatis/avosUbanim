@@ -4,45 +4,99 @@ const learnersList = document.getElementById("learnersList");
 const raffleBtn = document.getElementById("pick");
 const winnerDisplay = document.getElementById("winnerDisplay");
 const removeBtn = document.getElementById("remove");
-const learners = [];
+const rouletteDisplay = document.getElementById("roulette");
+const rollBtn = document.getElementById("roll");
+const learnersToDisplayList = [];
+const learnersForRaffleList = [];
 const startTime = new Date();
-console.log(startTime);
 
-function addToList(learner) {
-  learnersList.innerHTML = learnersList.innerHTML + `<li> ${learner}  </li>`;
+if (!localStorage.getItem("time")) {
+  localStorage.setItem("time", startTime);
+}
+function addLearnerToDisplayList() {
+  learnersToDisplayList.push(learnerInput.value);
+}
+function addLearnerToRaffleList() {
+  learnersForRaffleList.push(learnerInput.value);
+}
+function addLearnerToPage() {
+  for (i = 0; i < learnersToDisplayList.length; i++)
+    learnersList.innerHTML =
+      learnersList.innerHTML + `<li> ${learnersToDisplayList[i]}  </li>`;
 }
 
 //function saveLearnerLocally() {
-// localStorage.setItem(localLearners, learners);
+// localStorage.setItem(localLearners, learnersToDisplayList);
 //}
-
+function removeLearnerFromLists() {
+  for (let i = 0; i < learnersForRaffleList.length; i++) {
+    if (learnersForRaffleList[i] === learnerInput.value) {
+      learnersForRaffleList.splice([i], 1);
+      i--
+    }
+  }
+  for (let i = 0; i < learnersToDisplayList.length; i++) {
+    if (learnersToDisplayList[i] === learnerInput.value) {
+      learnersToDisplayList.splice([i], 1);
+      i--
+    }
+  }
+}
+function rouletteNames(times) {
+  for (let i = 0; i < learnersToDisplayList.length; i++) {
+    const myTimeout1 = setTimeout(() => {
+      rouletteDisplay.innerHTML = learnersToDisplayList[i];
+    }, 50 * i * times);
+  }
+}
+function runRoulette() {
+  for (let i = 0; i < 50; i++) {
+    const myTimeout2 = setTimeout(() => {
+      rouletteNames(i);
+    }, 50 * i);
+  }
+}
 function showWinner(winner) {
-  console.log(learners[winner]);
-  winnerDisplay.innerHTML = `${learners[winner]}`;
+  console.log(learnersToDisplayList[winner]);
+  winnerDisplay.innerHTML = `${learnersToDisplayList[winner]}`;
 }
-function addLearner() {
-  learners.push(learnerInput.value);
-  addToList(learnerInput.value);
-  console.log(learners);
-  // saveLearnerLocally();
-}
+
 function clearInput() {
   learnerInput.value = "";
 }
+function clearDisplayNames() {
+  learnersList.innerHTML = "";
+}
 function getRandomNumber() {
-  return Math.floor(Math.random() * learners.length);
+  return Math.floor(Math.random() * learnersToDisplayList.length);
 }
 
-console.log(Math.random());
+learnerInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") document.getElementById("submit").click;
+});
 
 submitBtn.addEventListener("click", () => {
   if (new Date() - startTime <= 600004) {
-    learners.push(learnerInput.value);
+    addLearnerToRaffleList();
   }
-  addLearner();
+  addLearnerToRaffleList();
+  console.log(learnersForRaffleList);
+
+  addLearnerToDisplayList();
+  learnersList.innerHTML = "";
+  addLearnerToPage();
   clearInput();
 });
+rollBtn.addEventListener("click", () => {
+  runRoulette();
+});
 raffleBtn.addEventListener("click", () => {
-  console.log(getRandomNumber());
   showWinner(getRandomNumber());
+  rouletteDisplay.remove();
+});
+removeBtn.addEventListener("click", () => {
+  removeLearnerFromLists();
+  clearDisplayNames();
+  addLearnerToPage();
+  console.log(learnersForRaffleList);
 });
